@@ -28,10 +28,10 @@ def validNumber(phone_number):
     return True
 
 if __name__=="__main__":
-    master_workbook='PB_CLE_CRM.xlsx'
+    master_workbook='PB CLE CRM.xlsx'
     master_worksheet='PB CLE Master List'
     
-    workbooks_to_combine = ['PB_CLE_CRM.xlsx']
+    workbooks_to_combine = ['PB CLE CRM.xlsx']
     worksheets_to_combine = ['Jan 9th RSVP']
     
     master = pd.ExcelFile(master_workbook)
@@ -60,6 +60,7 @@ if __name__=="__main__":
         df_master_clean["Email"].replace(np.nan, '', regex=True,inplace=True)
         df_master_clean["Phone"] = df_master_clean["Phone"].astype("string")
         df_master_clean["Email"] = df_master_clean["Email"].astype("string")
+        df_master_clean = df_master_clean.reset_index()
         # mLastNames = list(map(str.strip, list(df_master_clean['Last Name'])))
         # mFirstNames = list(map(str.strip, list(df_master_clean['First Name'])))
         # mEmails = list(map(str.strip, list(df_master_clean['Email'].)))
@@ -72,6 +73,7 @@ if __name__=="__main__":
         df_sheet_clean["Phone"] = df_sheet_clean["Phone"].astype("string")
         df_sheet_clean["Email"] = df_sheet_clean["Email"].astype("string")
         df_sheet_clean["I live in Cleveland Ward # "].replace(np.nan, -1, regex=True,inplace=True)
+        df_sheet_clean = df_sheet_clean.reset_index()
         # sFirstNames = list(map(str.strip, list(df_sheet_clean[column_map['First Name']])))
         # sLastNames = list(map(str.strip, list(df_sheet_clean[column_map['Last Name']])))
         # sWards = list(map(str.strip, list(df_sheet_clean['I live in Cleveland Ward #'])))
